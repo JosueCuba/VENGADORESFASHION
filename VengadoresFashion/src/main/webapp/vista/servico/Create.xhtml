@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServicoCreateDlg" widgetVar="ServicoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.CreateServicoTitle}">
+            <h:form id="ServicoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{servicoController.selected != null}">
+                       <p:outputLabel value="#{vista.CreateServicoLabel_tipserv}" for="tipserv" />
+                        <p:inputText id="tipserv" value="#{servicoController.selected.tipserv}" 
+                                     title="#{vista.CreateServicoTitle_tipserv}"  >
+                                     <p:keyFilter regEx="/[A-Za-z \s Ñ ñ Á á É é Í í Ó ó Ú ú]/"/>
+                        </p:inputText>
+                       
+                        <p:outputLabel value="#{vista.CreateServicoLabel_precserv}" for="precserv" />
+                        <p:inputText id="precserv" value="#{servicoController.selected.precserv}"
+                                     title="#{vista.CreateServicoTitle_precserv}" />
+                        
+                        <p:outputLabel value="#{vista.CreateServicoLabel_idcli}" for="idcli" />
+                        <p:selectOneMenu id="idcli" value="#{servicoController.selected.idcli}" >
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="idcliItem"
+                                           itemValue="#{idcliItem}"/>
+                            <f:converter converterId="clienteConverter" />
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vista.CreateServicoLabel_idpro}" for="idpro" />
+                        <p:selectOneMenu id="idpro" value="#{servicoController.selected.idpro}" >
+                            <f:selectItems value="#{productoController.itemsAvailableSelectOne}"
+                                           var="idproItem"
+                                           itemValue="#{idproItem}"/>
+                            <f:converter converterId="productoConverter"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vista.CreateServicoLabel_idprf}" for="idprf" />
+                        <p:selectOneMenu id="idprf" value="#{servicoController.selected.idprf}" >
+                            <f:selectItems value="#{profesionalController.itemsAvailableSelectOne}"
+                                           var="idprfItem"
+                                           itemValue="#{idprfItem}"/>
+                            <f:converter converterId="profesionalConverter"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{servicoController.create}" value="#{vista.Save}" update="display,:ServicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServicoCreateDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="ServicoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
