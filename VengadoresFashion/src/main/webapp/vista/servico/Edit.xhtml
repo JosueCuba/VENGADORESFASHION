@@ -12,12 +12,14 @@
             <h:form id="ServicoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{servicoController.selected != null}">
-                        <p:outputLabel value="#{vista.EditServicoLabel_idserv}" for="idserv" />
-                        <p:inputText id="idserv" value="#{servicoController.selected.idserv}" title="#{vista.EditServicoTitle_idserv}" required="true" requiredMessage="#{vista.EditServicoRequiredMessage_idserv}"/>
-                        <p:outputLabel value="#{vista.EditServicoLabel_tipserv}" for="tipserv" />
-                        <p:inputText id="tipserv" value="#{servicoController.selected.tipserv}" title="#{vista.EditServicoTitle_tipserv}" />
+                      <p:outputLabel value="#{vista.EditServicoLabel_tipserv}" for="tipserv" />
+                        <p:inputText id="tipserv" value="#{servicoController.selected.tipserv}" 
+                                     title="#{vista.EditServicoTitle_tipserv}" />
+                          
                         <p:outputLabel value="#{vista.EditServicoLabel_precserv}" for="precserv" />
-                        <p:inputText id="precserv" value="#{servicoController.selected.precserv}" title="#{vista.EditServicoTitle_precserv}" />
+                        <p:inputText id="precserv" value="#{servicoController.selected.precserv}" 
+                                     title="#{vista.EditServicoTitle_precserv}" />
+                          
                         <p:outputLabel value="#{vista.EditServicoLabel_idcli}" for="idcli" />
                         <p:selectOneMenu id="idcli" value="#{servicoController.selected.idcli}" >
                             <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
